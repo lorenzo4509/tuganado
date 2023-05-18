@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add New Cow</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #336699;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    form {
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    input[type="text"],
+    input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #336699;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Add New Cow</h1>
+    <form action="/cows" method="POST">
+      <label for="number">Number:</label>
+      <input type="text" id="number" name="number" required>
+      <br>
+      <label for="breed">Breed:</label>
+      <input type="text" id="breed" name="breed" required>
+      <br>
+      <label for="weight">Weight:</label>
+      <input type="number" id="weight" name="weight" required>
+      <br>
+      <label for="price">Price:</label>
+      <input type="number" id="price" name="price" required>
+      <br>
+      <td>
+          <form onsubmit="fetch('http://localhost:3000/cow/{{this._id}}', { method: 'CREATE' })">
+            <input type="hidden" name="_method" value="CREATE">
+            <button type="submit">ADD</button>
+          </form>
+      </td>
+    </form>
+  </div>
+</body>
+</html>
+
+

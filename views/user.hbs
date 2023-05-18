@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #336699;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .user-info {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+
+    .user-info h2 {
+      margin-bottom: 10px;
+    }
+
+    .liked-cows {
+      background-color: #fff;
+      border-radius: 5px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .liked-cows h2 {
+      margin-bottom: 10px;
+    }
+
+    .cow {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>User Profile</h1>
+    <div class="user-info">
+      <h2>User Information</h2>
+      <p>Name: {{user.name}}</p>
+      <p>Email: {{user.email}}</p>
+    </div>
+    <div class="liked-cows">
+      <h2>Liked Cows</h2>
+      {{#if user.likes.length}}
+        {{#each user.likes}}
+          <div class="cow">
+            <p>Number: {{this.number}}</p>
+            <p>Breed: {{this.breed}}</p>
+            <p>Weight: {{this.weight}} kg</p>
+            <p>Price: ${{this.price}}</p>
+          </div>
+        {{/each}}
+      {{else}}
+        <p>No liked cows yet.</p>
+      {{/if}}
+    </div>
+  </div>
+</body>
+</html>

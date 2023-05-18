@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Cow Details</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      h1 {
+        color: #336699;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .details {
+        background-color: #fff;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .details p {
+        font-size: 18px;
+        margin-top: 20px;
+        text-align: center;
+      }
+
+      .edit-button {
+        display: block;
+        margin-top: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="details">
+        <h1>Cow Details</h1>
+        <p>
+          Number: {{cow.number}} <br>
+          Breed: {{cow.breed}} <br>
+          Weight: {{cow.weight}} kg <br>
+          Price: ${{cow.price}}
+        </p>
+        <a href="/ganado/edit/{{cow._id}}" class="edit-button">Edit Cow</a>
+      </div>
+    </div>
+  </body>
+</html>
