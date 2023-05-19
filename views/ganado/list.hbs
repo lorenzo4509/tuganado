@@ -4,43 +4,92 @@
     <title>List of Cows</title>
     <style>
       body {
-        background-color: #f8f8f8;
+        background-color: #eafae2;
         font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
       }
 
-      h1 {
-        color: #336699;
-        text-align: center;
-      }
-
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 20px;
-      }
-
-      th,
-      td {
+      nav {
+        background-color: #448755;
+        color: #ffffff;
         padding: 10px;
-        text-align: left;
       }
 
-      th {
-        background-color: #336699;
+      .navbar-brand {
+        font-size: 20px;
+        font-weight: bold;
+        margin-right: 20px;
+        text-decoration: none;
         color: #ffffff;
       }
 
-      tr:nth-child(even) {
-        background-color: #f2f2f2;
+      .navbar-links {
+        display: flex;
+        justify-content: flex-end;
       }
 
-      a {
-        color: #336699;
+      .navbar-links a {
+        margin-left: 10px;
+        color: #ffffff;
+        text-decoration: none;
+        padding: 6px 10px;
+        border-radius: 4px;
+        background-color: #ffffff;
+        color: #448755;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .navbar-links a:hover {
+        background-color: #448755;
+        color: #ffffff;
+      }
+
+      h1 {
+        color: #448755;
+        text-align: center;
+        margin-top: 40px;
+      }
+
+      .cow-container {
+        width: 80%;
+        margin: 0 auto;
+        background-color: #d7f6cd;
+        border-radius: 4px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .cow-container:nth-child(even) {
+        background-color: #c2efb9;
+      }
+
+      .cow-number {
+        font-weight: bold;
+        color: #448755;
+      }
+
+      .cow-details a {
+        color: #448755;
         text-decoration: none;
       }
 
-      button {
-        background-color: #ffffff;
+      .delete-button {
+        background-color: #448755;
+        color: #ffffff;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .delete-button:hover {
+        background-color: #366346;
+        color: #ffffff;
+      }
+
+      .like-button {
+        background-color: transparent;
         border: none;
         padding: 0;
         cursor: pointer;
@@ -50,49 +99,58 @@
       .heart-icon {
         width: 20px;
         height: 20px;
-        background-image: url('heart-icon.png'); /* Reemplaza 'heart-icon.png' con la ruta a tu icono de corazón */
+        background-image: url('heart-icon.png');
         background-size: cover;
       }
 
       .heart-icon:hover {
         transform: scale(1.2);
       }
+
+      footer {
+        background-color: #448755;
+        color: #ffffff;
+        padding: 10px;
+        text-align: center;
+      }
     </style>
   </head>
   <body>
+    <nav>
+      <a href="#" class="navbar-brand">TU GANADO</a>
+      <div class="navbar-links">
+        <a href="/ganado/add">Add Cow</a>
+        <a href="/user">My perfil</a>
+      </div>
+    </nav>
+
     <h1>List of Cows</h1>
-    <div class="add-button">
-      <a href="/ganado/add">Add Cow</a>
-    <table>
-      <tr>
-        <th>Number</th>
-        <th>Breed</th>
-        <th>Weight (kg)</th>
-        <th>Price ($)</th>
-        <th>Details</th>
-        <th>Delete</th>
-        <th>Like</th>
-      </tr>
-      {{#each cow}}
-      <tr>
-        <td>{{this.number}}</td>
-        <td>{{this.breed}}</td>
-        <td>{{this.weight}}</td>
-        <td>{{this.price}}</td>
-        <td><a href="/cow/{{this._id}}">Details</a></td>
-        <td>
-          <form onsubmit="fetch('http://localhost:3000/cow/{{this._id}}', { method: 'DELETE'})">
-            <input type="hidden" name="_method" value="DELETE">
-            <button type="submit">Delete</button>
-          </form>
-        </td>
-        <td>
-          <form action="/cow/like/{{this._id}}" method="POST">
-            <button type="submit" class="heart-icon"></button>
-          </form>
-        </td>
-      </tr>
-      {{/each}}
-    </table>
+
+    {{#each cow}}
+    <div class="cow-container">
+      <p><span class="cow-number">{{this.number}}</span></p>
+      <p><strong>Breed:</strong> {{this.breed}}</p>
+      <p><strong>Weight (kg):</strong> {{this.weight}}</p>
+      <p><strong>Price ($):</strong> {{this.price}}</p>
+      <p class="cow-details"><a href="/cow/{{this._id}}">Details</a></p>
+      <p>
+        <form onsubmit="fetch('http://localhost:3000/cow/{{this._id}}', { method: 'DELETE'})">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit" class="delete-button">Delete</button>
+        </form>
+      </p>
+      <p>
+        <form action="/cow/like/{{this._id}}" method="POST">
+          <button type="submit" class="like-button heart-icon"></button>
+        </form>
+      </p>
+    </div>
+    {{/each}}
+
+    <footer>
+      <p>Correo: lorenzorhdez@hotmail.com | Dirección: Calabozo-estado Guarico | Teléfono: 607115806</p>
+      <p>DERECHOS DE PAGO BÁSICO ABRS 2023 (PAC)</p>
+      <p>Ganado Vacuno | Ganadería Equina | Ganado Ovino | Fincas | Nuevas Incorporaciones</p>
+    </footer>
   </body>
 </html>
