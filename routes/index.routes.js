@@ -21,6 +21,8 @@ router.get("/cow", (req, res, next) => {
   res.render("cow");
 });
 router.get("/user", (req, res, next) => {
+
+  
   User.find()
   res.render("user");
 });
